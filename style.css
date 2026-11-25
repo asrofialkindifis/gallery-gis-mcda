@@ -1,0 +1,327 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+/* ---------- Layout ---------- */
+.layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ---------- Preview ---------- */
+.preview {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  background: #0f172a;
+  overflow: hidden;
+}
+
+/* OpenSeadragon fills preview */
+#openseadragon {
+  position: absolute;
+  inset: 0;
+  background: #0b1220;
+}
+
+/* Custom viewer controls (zoom + / − / reset) */
+.viewer-controls {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 20;
+}
+
+.viewer-controls button {
+  width: 42px;
+  height: 42px;
+  background: rgba(15, 23, 42, 0.88);
+  color: #f1f5f9;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.viewer-controls button:hover {
+  background: rgba(51, 65, 85, 0.95);
+  transform: scale(1.05);
+}
+
+.viewer-controls button:active {
+  transform: scale(0.95);
+}
+
+/* Hint */
+.hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.88);
+  color: #f1f5f9;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  border: 1px solid #334155;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+  z-index: 20;
+  white-space: nowrap;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: 340px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #111827;
+  border-left: 1px solid #1f2937;
+  height: 100vh;
+}
+
+.sidebar-content {
+  width: 340px;
+  height: 100%;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar h2 {
+  color: #f1f5f9;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggle-btn:hover {
+  background: #1f2937;
+  color: #f1f5f9;
+}
+
+/* ---------- Checkbox list ---------- */
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.checkbox-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #1f2937;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+
+.checkbox-card:hover {
+  border-color: #475569;
+  transform: translateX(-3px);
+}
+
+.checkbox-card img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.checkbox-card .label {
+  flex: 1;
+  color: #cbd5e1;
+  font-size: 0.88rem;
+  line-height: 1.3;
+}
+
+.checkbox-card input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #475569;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.checkbox-card input[type="checkbox"]:hover {
+  border-color: #38bdf8;
+}
+
+.checkbox-card input[type="checkbox"]:checked {
+  background: #38bdf8;
+  border-color: #38bdf8;
+}
+
+.checkbox-card input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: #0f172a;
+  font-weight: 900;
+  font-size: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+}
+
+.checkbox-card:has(input[type="checkbox"]:checked) {
+  border-color: #38bdf8;
+  background: #1e3a5f;
+}
+
+.checkbox-card:has(input[type="checkbox"]:checked) .label {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ---------- Hamburger "Legenda" ---------- */
+.show-menu-btn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  background: #1f2937;
+  color: #f1f5f9;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.show-menu-btn:hover {
+  background: #334155;
+  transform: translateY(-1px);
+}
+
+.show-menu-btn .icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .preview {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: 40vh;
+    border-left: none;
+    border-top: 1px solid #1f2937;
+  }
+
+  .sidebar-content {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .checkbox-list {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    gap: 10px;
+  }
+
+  .checkbox-card {
+    flex-direction: column;
+    min-width: 130px;
+    text-align: center;
+    gap: 8px;
+  }
+
+  .checkbox-card img {
+    width: 100%;
+    height: 70px;
+  }
+
+  .checkbox-card .label {
+    font-size: 0.75rem;
+  }
+
+  .viewer-controls {
+    top: 10px;
+    right: 10px;
+  }
+
+  .viewer-controls button {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+  }
+
+  .hint {
+    font-size: 0.75rem;
+    bottom: 12px;
+    padding: 6px 14px;
+  }
+
+  .show-menu-btn {
+    top: 10px;
+    right: 10px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}

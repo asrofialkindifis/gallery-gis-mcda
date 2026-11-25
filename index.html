@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeri Peta</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="layout">
+
+    <!-- ============ PREVIEW (OpenSeadragon) ============ -->
+    <section class="preview" id="previewArea">
+      <div id="openseadragon"></div>
+
+      <!-- Custom zoom controls -->
+      <div class="viewer-controls">
+        <button id="zoomIn"    title="Zoom In"     aria-label="Zoom In">+</button>
+        <button id="zoomOut"   title="Zoom Out"    aria-label="Zoom Out">−</button>
+        <button id="resetView" title="Reset Tampilan" aria-label="Reset">⟲</button>
+      </div>
+
+      <!-- Hint (auto-hide) -->
+      <div class="hint" id="hint">Drag untuk geser · Scroll untuk zoom</div>
+    </section>
+
+    <!-- ============ SIDEBAR (Legenda) ============ -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-header">
+          <h2>Legenda</h2>
+          <button id="toggleMenu" class="toggle-btn" title="Tutup Legenda" aria-label="Tutup">✕</button>
+        </div>
+
+        <form class="checkbox-list">
+          <label class="checkbox-card">
+            <img src="images/gambar1.jpg" alt="Peta Area Kajian" loading="lazy" />
+            <span class="label">Peta Area Kajian</span>
+            <input type="checkbox" name="gambar" value="images/gambar1.jpg" checked />
+          </label>
+
+          <label class="checkbox-card">
+            <img src="images/gambar2.jpg" alt="Peta Zona Pemanfaatan" loading="lazy" />
+            <span class="label">Peta Zona Pemanfaatan</span>
+            <input type="checkbox" name="gambar" value="images/gambar2.jpg" />
+          </label>
+
+          <label class="checkbox-card">
+            <img src="images/gambar3.jpg" alt="Peta Zonasi" loading="lazy" />
+            <span class="label">Peta Zonasi</span>
+            <input type="checkbox" name="gambar" value="images/gambar3.jpg" />
+          </label>
+
+          <label class="checkbox-card">
+            <img src="images/gambar4.jpg" alt="Peta Kesesuaian Ekowisata" loading="lazy" />
+            <span class="label">Peta Kesesuaian Ekowisata</span>
+            <input type="checkbox" name="gambar" value="images/gambar4.jpg" />
+          </label>
+        </form>
+      </div>
+    </aside>
+
+    <!-- ============ HAMBURGER "LEGENDA" ============ -->
+    <button id="showMenu" class="show-menu-btn" aria-label="Buka Legenda">
+      <span class="icon">☰</span> Legenda
+    </button>
+
+  </main>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- OpenSeadragon (robust zoom/pan for large images) -->
+  <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
